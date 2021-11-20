@@ -33,7 +33,7 @@ app.post('/mensagens', (req, res) => {
 })
 
 // [PUT] / mensagens {id} -- Atualiza uma mensagem pelo ID
-app.put('/mensagem/:id', (req, res) => {
+app.put('/mensagens/:id', (req, res) => {
   const id = req.params.id - 1
   const mensagem = req.body.mensagem
   mensagens[id] = mensagem
@@ -41,6 +41,12 @@ app.put('/mensagem/:id', (req, res) => {
   res.send(`Mensagem atualizada com sucesso:'${mensagem}'.`)
 })
 
+// [DELETE] /mensagens {id}  Remover uma mensagem pelo ID
+app.delete('/mensagens/:id', (req, res) => {
+  const id = req.params.id - 1
+  delete mensagens[id]
+  res.send('Mensagem removida com sucesso.')
+})
 app.listen(port, () => {
   console.info(`App rodando em http://localhost:${port}`)
 })
